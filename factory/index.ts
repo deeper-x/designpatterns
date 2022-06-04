@@ -8,7 +8,7 @@ interface IBankAccount {
 
 // BankAccount is the base class
 class BankAccount implements IBankAccount {
-  private id: string;
+  private _id: string;
   private _ownerID: string;
   private _balance: number;
 

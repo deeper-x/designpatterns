@@ -1,4 +1,4 @@
-// Application is the asset type
+// Application is the asset type, we want to control props of
 type Application = {
   downloaded: boolean;
   untarred: boolean;
@@ -7,7 +7,7 @@ type Application = {
   installed: boolean;
 };
 
-// IDeploy defines the operations set
+// IDeploy defines the deployment operations set
 interface IDeploy {
   wget(): this;
   untar(): this;
@@ -16,8 +16,9 @@ interface IDeploy {
   makeInstall(): this;
 }
 
+// Deploy is the class based on builder pattern
 export class Deploy implements IDeploy {
-  _app: Application;
+  private _app: Application;
 
   constructor() {
     this._app = {
@@ -76,3 +77,13 @@ export class Sysadmin {
     return new Deploy().wget().untar().configure().make().makeInstall();
   }
 }
+
+// import { Deploy, Sysadmin } from "./index.ts";
+// import { assertFalse } from "https://deno.land/std@0.142.0/testing/asserts.ts";
+
+// Deno.test("deploy test", () => {
+//   const app: Deploy = Sysadmin.run();
+//   const ok: boolean = app.checkInstall();
+
+//   assertFalse(!ok);
+// });
